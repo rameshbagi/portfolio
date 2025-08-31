@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student CV - Data Analyst & Data Science</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--bg-white);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 1.5rem;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        .content-section {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .summary {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover, .experience-item:hover, .project-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .item-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            background: var(--bg-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+        }
+
+        .item-subtitle {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .skill-category h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            padding: 0.25rem 0;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: var(--text-dark);
+        }
+
+        .achievements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .achievements-list li::before {
+            content: '🏆';
+            margin-right: 0.5rem;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .certification-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .certification-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .certification-issuer {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .certification-date {
+            color: var(--success-color);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .languages-section {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-level {
+            background: var(--success-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 1rem;
+                border-radius: 10px;
+            }
+            
+            .header-section {
+                padding: 2rem 1rem;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+            
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gpa-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+
+        .relevant-courses {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .course-item {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            border-left: 3px solid var(--info-color);
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">
+        <i class="fas fa-print me-2"></i>Print CV
+    </button>
+
+    <div class="cv-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <img src="portfolio-photo.jpg" alt="Ramesh Bagi"  class="profile-image">
+                <i class="fas fa-user"></i>
+            
+            <h1 class="name">Ramesh Bagi</h1>
+            <p class="title">Data Science & Analytics Student</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>rameshbagi20@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 8431694856</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>https://www.linkedin.com/in/ramesh-bagi-80a630299/</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>https://github.com/rameshbagi</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <!-- Professional Summary -->
+            <div class="summary">
+                <h3 class="section-title">Professional Summary</h3>
+                <p>
+                    Passionate Data Science student with strong analytical skills and hands-on experience in machine learning, 
+                    statistical analysis, and data visualization. Demonstrated ability to transform complex data into actionable insights 
+                    through academic projects and coursework. Seeking opportunities to apply technical skills in real-world data analysis 
+                    and contribute to data-driven decision making.
+                </p>
+            </div>
+
+            <!-- Education -->
+            <div>
+                <h3 class="section-title">Education</h3>
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Bachelor of Engineering in Computer Science and Engineering</div>
+                            <div class="item-subtitle">SG Balekundri Institute of Technology</div>
+                        </div>
+                        <div class="item-date"> Graduated in May 2025</div>
+                    </div>
+                    <div class="item-description">
+                        <span class="gpa-badge">GPA: 7.5/10</span>
+                        <div class="relevant-courses">
+                            <strong>Relevant Coursework:</strong>
+                            <div class="courses-grid">
+                                <div class="course-item">Data Structures & Algorithms</div>
+                                <div class="course-item">Statistical Analysis</div>
+                                <div class="course-item">Machine Learning</div>
+                                <div class="course-item">Database Management</div>
+                                <div class="course-item">Data Visualization</div>
+                                <div class="course-item">Python Programming</div>
+                                <div class="course-item">Business Analytics</div>
+                                <div class="course-item">Big Data Technologies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div>
+                <h3 class="section-title">Technical Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h5>Programming Languages</h5>
+                        <ul class="skill-list">
+                            <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                         <li>SQL (PostgreSQL, MySQL)</li>
+                            <li>HTML, CSS, JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Data Analysis & Visualization</h5>
+                        <ul class="skill-list">
+                            <li>Tableau & Power BI</li>
+                            <li>Matplotlib & Seaborn</li>
+                            <li>Plotly </li>
+                            <li>Excel (VBA, Macros, Pivot Tables, Formulas & Functions)</li>
+                            <li>Excel (Advanced)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Machine Learning</h5>
+                        <ul class="skill-list">
+                            <li>Supervised Learning</li>
+                            <li>Unsupervised Learning</li>
+                            <li>Deep Learning (TensorFlow)</li>
+                            <li>Natural Language Processing</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Tools & Technologies</h5>
+                        <ul class="skill-list">
+                            <li>Jupyter Notebooks</li>
+                            <li>Git & GitHub</li>
+                            <li>Docker</li>
+                            <li>AWS (Basic)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div>
+                <h3 class="section-title">Academic Projects</h3>
+                
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">Movie Success Prediction Model</div>
+                        <div class="item-date">Dec 2023</div>
+                    </div>
+                    <div class="item-subtitle">Machine Learning Project</div>
+                    <div class="item-description">
+                        Developed a machine learning model to predict movie box office success using historical data from 1980-2022. 
+                        Analyzed factors including budget, genre, cast, and release timing. Achieved 78% accuracy using Random Forest algorithm.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">E-commerce Customer Segmentation</div>
+                        <div class="item-date">Nov 2023</div>
+                    </div>
+                    <div class="item-subtitle">Data Analysis Project</div>
+                    <div class="item-description">
+                        Performed customer segmentation analysis on e-commerce dataset using K-means clustering. 
+                        Identified 4 distinct customer segments and provided actionable marketing recommendations.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">K-means Clustering</span>
+                        <span class="tech-tag">ggplot2</span>
+                        <span class="tech-tag">Tableau</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="item-header">
+                        <div class="item-title">Real-time Stock Analysis Dashboard</div>
+                        <div class="item-date">Oct 2023</div>
+                    </div>
+                    <div class="item-subtitle">Web Application</div>
+                    <div class="item-description">
+                        Built an interactive dashboard for real-time stock analysis with sentiment analysis from news sources. 
+                        Implemented technical indicators and provided investment insights.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">APIs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div>
+                <h3 class="section-title">Experience</h3>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div class="item-title">Data Analysis Intern</div>
+                        <div class="item-date">Jun 2023 - Aug 2023</div>
+                    </div>
+                    <div class="item-subtitle">Company Name</div>
+                    <div class="item-description">
+                        • Analyzed customer behavior data to identify trends and patterns<br>
+                        • Created interactive dashboards using Tableau for executive presentations<br>
+                        • Assisted in A/B testing analysis for marketing campaigns<br>
+                        • Collaborated with cross-functional teams to implement data-driven recommendations
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div class="item-title">Research Assistant</div>
+                        <div class="item-date">Jan 2023 - Present</div>
+                    </div>
+                    <div class="item-subtitle">University Research Lab</div>
+                    <div class="item-description">
+                        • Conducting research on machine learning applications in healthcare<br>
+                        • Developing predictive models for early disease detection<br>
+                        • Publishing findings in academic journals and presenting at conferences<br>
+                        • Mentoring junior students in data science methodologies
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div>
+                <h3 class="section-title">Certifications</h3>
+                <div class="certifications-grid">
+                    <div class="certification-item">
+                        <div class="certification-title">Google Data Analytics Professional Certificate</div>
+                        <div class="certification-issuer">Google</div>
+                        <div class="certification-date">2023</div>
+                    </div>
+                    <div class="certification-item">
+                        <div class="certification-title">Python for Data Science</div>
+                        <div class="certification-issuer">Coursera</div>
+                        <div class="certification-date">2023</div>
+                    </div>
+                    <div class="certification-item">
+                        <div class="certification-title">Tableau Desktop Specialist</div>
+                        <div class="certification-issuer">Tableau</div>
+                        <div class="certification-date">2022</div>
+                    </div>
+                    <div class="certification-item">
+                        <div class="certification-title">SQL for Data Science</div>
+                        <div class="certification-issuer">DataCamp</div>
+                        <div class="certification-date">2022</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div>
+                <h3 class="section-title">Achievements & Awards</h3>
+                <ul class="achievements-list">
+                    <li>Dean's List (3 consecutive semesters)</li>
+                    <li>1st Place - University Data Science Competition 2023</li>
+                    <li>Best Research Paper Award - Computer Science Department</li>
+                    <li>Data Science Scholarship Recipient (2022-2024)</li>
+                    <li>Student Leadership Award for organizing Data Science Club</li>
+                </ul>
+            </div>
+
+            <!-- Languages -->
+            <div>
+                <h3 class="section-title">Languages</h3>
+                <div class="languages-section">
+                    <div class="language-item">
+                        <span>English</span>
+                        <span class="language-level">Fluent</span>
+                    </div>
+                    <div class="language-item">
+                        <span>Kannada</span>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span>Hindi</span>
+                        <span class="language-level">Fluent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to project items
+            const projectItems = document.querySelectorAll('.project-item');
+            projectItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                });
+            });
+
+            // Add click to copy email functionality
+            const emailElement = document.querySelector('.contact-item span');
+            if (emailElement && emailElement.textContent.includes('@')) {
+                emailElement.style.cursor = 'pointer';
+                emailElement.addEventListener('click', function() {
+                    navigator.clipboard.writeText(this.textContent);
+                    this.style.color = 'var(--success-color)';
+                    setTimeout(() => {
+                        this.style.color = '';
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
